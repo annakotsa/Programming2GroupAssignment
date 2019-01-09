@@ -6,7 +6,7 @@ import java.util.LinkedList;
 import java.util.Scanner;
 
 public class Database {
-  public static LinkedList<LinkedList<String>> mainList = 
+  public static LinkedList<LinkedList<String>> mainList =
       new LinkedList<LinkedList<String>>();
 
   /**
@@ -20,7 +20,7 @@ public class Database {
    * @param args .
    * @throws InputMismatchException for invalid input
    */
-  
+
   public static void main(String[] args) throws InputMismatchException {
 
     Scanner option = new Scanner(System.in);
@@ -31,7 +31,7 @@ public class Database {
     System.out.println("Give your Database name: ");
     String dataName = option.nextLine();
     System.out.println("\n");
-    
+
     System.out.println("Do you want to connect with an existing SQL DataBase?");
     System.out.println("If yes, press 1. If no, press 2.");
 
@@ -48,13 +48,18 @@ public class Database {
       }
     } while (answer != 1 && answer != 2);
     if (answer == 1) {
-      SQL sql1 = new SQL();
-      System.out.println("Please give the url address.");
-      Scanner option2 = new Scanner(System.in);
-      String url = option2.nextLine();
-      sql1.Sql(url, dataName);
-    } 
-    
+	  try {
+        SQL sql1 = new SQL();
+        System.out.println("Please give the url address.");
+        Scanner option2 = new Scanner(System.in);
+        String url = option2.nextLine();
+        sql1.Sql(url, dataName);
+      catch (SQLException e) {
+	  	System.out.println("SQLException: ");
+		System.out.println(e.getMessage());
+	  }
+    }
+
     System.out.println("Hello " + name + ", give your database (" + dataName
         + ") new fields \n");
     Process process = new Process();
@@ -65,7 +70,7 @@ public class Database {
     while (flag == true) {
       try {
         System.out.println("Choose an option from the following MENU: \n ");
-        System.out.println("\t1. Input Data \n\t2. Delete Data \n\t3. Edit Data \n\t4." 
+        System.out.println("\t1. Input Data \n\t2. Delete Data \n\t3. Edit Data \n\t4."
             + " View Data \n\t" + "5. Save Database\n\t6. Exit \n");
         Scanner option2 = new Scanner(System.in);
         choice = option2.nextInt();
@@ -95,6 +100,6 @@ public class Database {
       } catch (InputMismatchException e) {
         System.out.println("\n!! Please give an Integer !!\n");
       }
-    } 
+    }
   }
 }
