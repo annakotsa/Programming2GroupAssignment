@@ -7,11 +7,11 @@ import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.LinkedList;
 import java.util.Scanner;
- 
+
 public class Process {
   private int counter = 0;
   private int choice = 1;
-  private int maxCharacters = 25;
+
 
   /**
   * setNames method sets the names of the fields.
@@ -20,10 +20,10 @@ public class Process {
   * @author Pantelis Kirpoglou
   * @param list database
   * @return list
-  * @throws InputMismatchException 
+  * @throws InputMismatchException
   */
 
-  public LinkedList<LinkedList<String>> setNames(LinkedList<LinkedList<String>> 
+  public LinkedList<LinkedList<String>> setNames(LinkedList<LinkedList<String>>
       list) throws InputMismatchException {
     counter = 0;
 
@@ -39,7 +39,7 @@ public class Process {
       list.getFirst().add(keyName);
       System.out.println(list.getFirst().get(0));
       do {
-        try { 
+        try {
 
           System.out.println("Do you want to continue? If yes, press 1. If not, press any number.");
           Scanner inp = new Scanner(System.in);
@@ -77,13 +77,13 @@ public class Process {
   }
 
 
-  /** 
+  /**
   * method addRecord adds to the list the records entered by the user.
   * @authors Pantelis Kirpoglou, Aristi Syriou
   * @param list database
   * @return list
-  */ 
-  public LinkedList<LinkedList<String>> addRecord(LinkedList<LinkedList<String>> 
+  */
+  public LinkedList<LinkedList<String>> addRecord(LinkedList<LinkedList<String>>
       list) throws InputMismatchException {
     int choice = 1;
     Scanner input = new Scanner(System.in);
@@ -137,7 +137,7 @@ public class Process {
   * @return list
   */
 
-  public LinkedList<LinkedList<String>> edit(LinkedList<LinkedList<String>> list) 
+  public LinkedList<LinkedList<String>> edit(LinkedList<LinkedList<String>> list)
         throws InputMismatchException  {
 
     Scanner input = new Scanner(System.in);
@@ -152,7 +152,7 @@ public class Process {
           int ans = input.nextInt();
           if (ans == 1) {
             list = edit(list);
-          } 
+          }
         } else {
           System.out.println("Provide the name of the field you want to edit:");
           for (int i = 0; i < list.size(); i++) {
@@ -163,28 +163,30 @@ public class Process {
           int p = -1;
           int i = 0;
           boolean found = false;
-          while (p == - 1 && !found) {
-            while (i < list.size() && !found) {
-              if (pedio.equals(list.get(i).get(0))) {
-                p = i;
-                found = true;
-              }
-              i++;
-            }
-            if (!found) {
-              System.out.println(" !! No such field name, please try again !!");
-              list = edit(list);
-            }
-          }
-          System.out.println("Please enter the new value");
-          String newValue = input.nextLine();
 
-          if (newValue.equals("") && p == 0) {
-            System.out.println("\n !! Primary key cannot be null"
-                + " or same with previous primary key !!\n");
-          } else {
-            list.get(p).set(ak, newValue);
+          while (i < list.size() && !found) {
+            if (pedio.equals(list.get(i).get(0))) {
+              p = i;
+              found = true;
+            }
+            i++;
           }
+          if (!found) {
+            System.out.println(" !! No such field name, please try again !!");
+            list = edit(list);
+          } else {
+
+            System.out.println("Please enter the new value");
+            String newValue = input.nextLine();
+
+            if (newValue.equals("") && p == 0) {
+              System.out.println("\n !! Primary key cannot be null"
+                  + " or same with previous primary key !!\n");
+            } else {
+              list.get(p).set(ak, newValue);
+              System.out.println("The record has been changed. \n");
+            }
+		  }
         }
       }
       return list;
@@ -208,7 +210,7 @@ public class Process {
   * @param list database
   * @return list
   */
-  public LinkedList<LinkedList<String>> deletionChoice(LinkedList<LinkedList<String>> 
+  public LinkedList<LinkedList<String>> deletionChoice(LinkedList<LinkedList<String>>
       list) throws InputMismatchException {
     boolean flag = true;
     LinkedList<LinkedList<String>> sublist = new  LinkedList<LinkedList<String>>();
@@ -216,7 +218,7 @@ public class Process {
     do {
       try {
         System.out.println("Choose an option from below: ");
-    
+
         System.out.println("1.Delete the whole base.\n2.Delete a spesific record.\n"
             + "3.Return to basic menu.\n");
         Scanner input = new Scanner(System.in);
@@ -250,7 +252,7 @@ public class Process {
   * @param list database
   * @return list
   */
-  public LinkedList<LinkedList<String>> deleteTheBase(LinkedList<LinkedList<String>> 
+  public LinkedList<LinkedList<String>> deleteTheBase(LinkedList<LinkedList<String>>
       list) throws InputMismatchException {
     if (list.isEmpty()) {
       System.out.print("The DataBase is already empty");
@@ -274,10 +276,10 @@ public class Process {
   * @param list database
   * @return list
   */
-  public LinkedList<LinkedList<String>> deleteRecord(LinkedList<LinkedList<String>> 
+  public LinkedList<LinkedList<String>> deleteRecord(LinkedList<LinkedList<String>>
       list) throws InputMismatchException {
     System.out.println("\n!! Please give an Integer !!\n");
- 
+
     if (list.isEmpty() == true) {
       System.out.println("The base is empty.");
     } else {
@@ -346,7 +348,7 @@ public class Process {
       } catch (InputMismatchException e) {
         System.out.println("\n!! Please give an Integer !!\n");
       }
-    } 
+    }
 
   } //end method viewList
 
@@ -390,7 +392,7 @@ public class Process {
           System.out.printf(list.get(i).get(position) + " ");
         }
       }
-    } 
+    }
   }
 
 
@@ -412,7 +414,7 @@ public class Process {
     } else {
       System.out.println("Please enter the item of the record you want to view.");
       Scanner input = new Scanner(System.in);
-      String item = input.nextLine(); 
+      String item = input.nextLine();
       boolean found = false;
       for (int j = 0; j < list.size(); j++) {
         for (int k = 0; k < list.get(0).size(); k++) {
@@ -425,7 +427,7 @@ public class Process {
         } //end of for(k)
       } //end of for(j)
       if (!found) {
-        System.out.println("!! The item you entered is not in the list;" 
+        System.out.println("!! The item you entered is not in the list;"
             + " do you want to try again? If YES press 1. !!");
         Scanner choice = new Scanner(System.in);
         int ch = choice.nextInt();
@@ -463,7 +465,7 @@ public class Process {
     }
 
     Scanner input = new Scanner(System.in);
-    String ans = input.nextLine(); 
+    String ans = input.nextLine();
     int pos = -1;
     boolean found = false;
     int i = 1;
@@ -480,7 +482,7 @@ public class Process {
     } else {
       return pos;
     }
-  } 
+  }
 
   /**
    * method saveDatabase saves the database to a selected
@@ -489,7 +491,7 @@ public class Process {
    * @param list database
    * @param databaseName filename
    */
-  
+
   public void saveDatabase(LinkedList<LinkedList<String>> list, String databaseName) {
 
     String filename = databaseName + ".txt";
