@@ -1,5 +1,5 @@
 # Programming2GroupAssignment
-JavaDevs Team main Repository for the Group Semester Assignment at Programming II.
+JavaDevs Team main Repository for the Group Semester Assignment at Programming II course.
 
 Short explanation regarding our code's functionality.
 
